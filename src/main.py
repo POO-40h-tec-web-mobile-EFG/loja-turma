@@ -11,4 +11,4 @@ print("   Bem-vindo(a) à Loja POO! 🛒")
 print("=================================")
 
 # ✏️ AULA 1: troque o texto abaixo pelo seu nome
-print("Desenvolvido por: Seu Nome Aqui")
+print("Desenvolvidos por: Wilker")
