@@ -4,54 +4,97 @@
 
 # **SIGA AS INSTRUÇÕES ABAIXO PARA SEGUIRMOS COM O PROJETO**
 
-# **VIA GITHUB:**
+# VIA GITHUB
 
-## **1. Abrir pasta do trabalho no VS Code**
+> **Regra de ouro:** você só envia (`push`) para o **seu** repositório (`origin`).
+> O repositório da professora (`upstream`) é **somente leitura**: dele você só **baixa** atualizações.
+>
+> | Remote | De quem é | O que você faz com ele |
+> |---|---|---|
+> | `origin` | **Seu** fork (`SEU-USUARIO/loja-turma`) | `push` e `pull` ✅ |
+> | `upstream` | Professora (`POO-40h-tec-web-mobile-EFG/loja-turma`) | só `fetch` e `merge` ⬇️ — **nunca** `push` ❌ |
 
-##### 1. Abra o VS Code > File > Open folder > Selecione a pasta do projeto com nome exato "loja-turma" igual ao do repositório.
-##### 2. Pressione ` Ctrl + Shift + ' ` para abrir o terminal (ou use o menu Terminal > New Terminal)
-##### 3. Confira se o terminal abriu na pasta certa: o começo da linha deve terminar em `\loja-turma>`, por exemplo `PS C:\Users\SEU-USUARIO\DOCUMENTOS\loja-turma>`.
-   1. Se não abriu, vá até a pasta com o comando `cd C:\Users\SEU-USUARIO\DOCUMENTOS\loja-turma` (ou o atalho `cd ~\DOCUMENTOS\loja-turma`). O caminho muda conforme onde você salvou o projeto.
-##### 4. Cheque se você fez o login no github no VS Code
-   1. Caso não tenha feito login, faça pelo navegador&#91;image: image.png\]&#91;image: image.png\]
-##### 5. Verifique como está a configuração do git:&#32;
+---
+
+## 1. Abrir a pasta do trabalho no VS Code
+
+1. Abra o VS Code > **File** > **Open Folder** > selecione a pasta do projeto com o nome exato `loja-turma`, igual ao do repositório.
+2. Pressione `` Ctrl + Shift + ' `` para abrir o terminal (ou use o menu **Terminal** > **New Terminal**).
+3. Confira se o terminal abriu na pasta certa: o começo da linha deve terminar em `\loja-turma>`, por exemplo:
 
    ```
+   PS C:\Users\SEU-USUARIO\Documents\loja-turma>
+   ```
+
+   - Se não abriu, vá até a pasta com o comando abaixo (o caminho muda conforme onde você salvou o projeto):
+
+     ```powershell
+     cd ~\Documents\loja-turma
+     ```
+
+4. Verifique se você fez login no GitHub no VS Code:
+   - Clique no ícone de **conta** (bonequinho) no canto inferior esquerdo do VS Code.
+   - Se não aparecer a sua conta do GitHub, clique em **Sign in with GitHub** e conclua o login no navegador.
+
+5. Verifique a configuração do Git:
+
+   ```powershell
    git config --global --list
    ```
-   1. Se aparecerem `user.name` e `user.email` com o seu usuário do github, está correto.&#32;
-6. Se não aparecerem, configure com:\
-• nome de usuário da sua conta do GitHub.\
-• e-mail da sua conta do GitHub.
 
-   ```
-   git config --global user.name "Seu Nome" 
-   git config --global user.email "seu-email@exemplo.com" 
-   ```
+   - Se aparecerem `user.name` e `user.email` com os dados da sua conta do GitHub, está correto.
+   - Se não aparecerem, configure com o **nome de usuário** e o **e-mail** da sua conta do GitHub:
 
-## **2. Verifique se você está com o fork atualizado**
+     ```powershell
+     git config --global user.name "Seu Nome"
+     git config --global user.email "seu-email@exemplo.com"
+     ```
 
-### **Confira se os dois endereços estão cadastrados (seu repositorio e repositorio professora):**
+---
+
+## 2. Verifique se o seu fork está configurado e atualizado
+
+### Confira os endereços cadastrados (seu repositório e repositório da professora)
 
 ```powershell
 git remote -v
 ```
 
-*comando para listar os repositórios remotos ligados à sua pasta*
+*Lista os repositórios remotos ligados à sua pasta.*
 
-Devem aparecer:
-
-![alt text](imagens/image.png)
-
-***origin **é o seu repositorio, **upstream **é o repositório professora.*
-
-### **- ****Se o `upstream` não aparecer, rode: **
+O resultado **deve ser exatamente assim** (trocando `SEU-USUARIO` pelo seu usuário):
 
 ```
-git remote add upstream ...
+origin    https://github.com/SEU-USUARIO/loja-turma.git (fetch)
+origin    https://github.com/SEU-USUARIO/loja-turma.git (push)
+upstream  https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma.git (fetch)
+upstream  SEM_PUSH (push)
 ```
 
-Depois, confira se falta alguma atualização do professor:
+*`origin` é o **seu** repositório. `upstream` é o repositório da **professora**.*
+
+> ⚠️ **PARE** se aparecer `POO-40h-tec-web-mobile-EFG` na linha do `origin`. Não faça nenhum `push` e siga a seção [Corrigir `origin` errado](#corrigir-origin-errado-clonou-o-repositório-da-professora).
+
+### Se o `upstream` não aparecer
+
+```powershell
+git remote add upstream https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma.git
+git remote set-url --push upstream SEM_PUSH
+git remote -v
+```
+
+### Se o `upstream` aparecer, mas a linha `(push)` não mostrar `SEM_PUSH`
+
+Ative a trava que impede envio para o repositório da professora:
+
+```powershell
+git remote set-url --push upstream SEM_PUSH
+git remote -v
+```
+
+*A trava bloqueia qualquer `git push upstream` (inclusive pelos botões **Sync Changes** e **Publish Branch** do VS Code). Baixar atualizações com `git fetch upstream` continua funcionando normalmente.*
+
+### Confira se falta alguma atualização da professora
 
 ```powershell
 git checkout main
@@ -59,43 +102,70 @@ git fetch upstream
 git log --oneline main..upstream/main
 ```
 
-***git checkout main**** **-***** *garante que você está na branch main do seu projeto*\
-***git fetch upstream**** -*** ***baixa as atualizações do repositório da professora (upstream) para o seu computador, sem mexer nos seus arquivos nem no seu main. \
-**git log --oneline main..upstream/main**** -***** *lista os commits que estão no main da professora e ainda não estão no seu main, um por linha. Ele só mostra, não altera nada.*
+- **`git checkout main`** — garante que você está na branch `main` do seu projeto.
+- **`git fetch upstream`** — baixa as atualizações do repositório da professora para o seu computador, sem mexer nos seus arquivos nem no seu `main`.
+- **`git log --oneline main..upstream/main`** — lista os commits que estão no `main` da professora e ainda não estão no seu `main`, um por linha. Só mostra, não altera nada.
 
-- **Sem nenhuma saída:** o seu `main` já tem tudo do professor ✅. Vá para o passo 4
-- **Se listar commits:** são atualizações que faltam. Siga o passo 3 (Atualize seu repositório com a atividade de hoje).
+Resultado:
 
-### **-** **Se não estiver feito fork nas aulas anteriores:**
+- **Sem nenhuma saída:** o seu `main` já tem tudo da professora ✅. Vá para o [passo 4](#4-crie-uma-branch-da-aula).
+- **Se listar commits:** são atualizações que faltam. Siga o [passo 3](#3-atualize-seu-repositório-com-a-atividade-de-hoje).
 
-Fork deve ser feito apenas uma vez, só faça fork se você não tiver feito no início. Se já tiver feito o fork, pule esta etapa.
+---
 
-1. Faça o login na sua conta do GitHub pelo navegador e abra o repositório da turma: [POO-40h-tec-web-mobile-EFG/loja-turma](https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma).
-2. Clique em **Fork** (canto superior direito). Mantenha o nome `loja-turma`, deixe marcado *Copy the main branch only* e clique em **Create fork**.
-   1. Confira: no topo deve aparecer `SEU-USUARIO / loja-turma` e, logo abaixo, *forked from POO-40h-tec-web-mobile-EFG/loja-turma*.
-3. No seu fork, clique em **Code** e copie o endereço HTTPS.
-4. No terminal, vá até a pasta onde você guarda seus projetos (ex.: `cd ~\DEV`) e rode:
+### Se você ainda não fez o fork nas aulas anteriores
 
-```powershell
-git clone https://github.com/SEU-USUARIO/loja-turma.git
-cd loja-turma
-git remote add upstream https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma.git
-git remote -v
-```
+> O fork é feito **apenas uma vez**. Se você já fez, pule esta etapa.
 
-O `git remote -v` deve mostrar `origin` com o **seu** usuário e `upstream` com `POO-40h-tec-web-mobile-EFG`. Depois, abra a pasta `loja-turma` no VS Code (passo 1).
+1. Faça login na sua conta do GitHub pelo navegador e abra o repositório da turma: [POO-40h-tec-web-mobile-EFG/loja-turma](https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma).
+2. Clique em **Fork** (canto superior direito). Mantenha o nome `loja-turma`, deixe marcado **Copy the main branch only** e clique em **Create fork**.
+   - Confira: no topo deve aparecer `SEU-USUARIO / loja-turma` e, logo abaixo, *forked from POO-40h-tec-web-mobile-EFG/loja-turma*.
+3. No **seu** fork, clique em **Code** e copie o endereço HTTPS.
+4. No terminal, vá até a pasta onde você guarda seus projetos e rode:
 
-**Atenção:** clone o **seu** fork, não o repositório do professor. Se o `origin` aparecer com `POO-40h-tec-web-mobile-EFG`, corrija assim:
+   ```powershell
+   cd ~\Documents
+   git clone https://github.com/SEU-USUARIO/loja-turma.git
+   cd loja-turma
+   git remote add upstream https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma.git
+   git remote set-url --push upstream SEM_PUSH
+   git remote -v
+   ```
+
+5. O `git remote -v` deve mostrar o resultado igual ao [modelo acima](#confira-os-endereços-cadastrados-seu-repositório-e-repositório-da-professora). Depois, abra a pasta `loja-turma` no VS Code ([passo 1](#1-abrir-a-pasta-do-trabalho-no-vs-code)).
+
+> ⚠️ **Atenção:** clone o **seu** fork, **não** o repositório da professora.
+
+### Corrigir `origin` errado (clonou o repositório da professora)
+
+Se o `origin` aparecer com `POO-40h-tec-web-mobile-EFG`, rode **todos** os comandos abaixo, na ordem:
 
 ```powershell
 git remote rename origin upstream
 git remote add origin https://github.com/SEU-USUARIO/loja-turma.git
+git fetch origin
+git branch -u origin/main main
+git remote set-url --push upstream SEM_PUSH
 git remote -v
+git branch -vv
 ```
 
-## **3. Atualize seu repositório com a atividade de hoje**
+- **`git remote rename origin upstream`** — o endereço da professora passa a se chamar `upstream`.
+- **`git remote add origin ...`** — cadastra o **seu** fork como `origin`.
+- **`git fetch origin`** — baixa as informações do seu fork.
+- **`git branch -u origin/main main`** — liga o seu `main` ao **seu** fork. *Sem este comando, o `main` continuaria ligado ao repositório da professora.*
+- **`git remote set-url --push upstream SEM_PUSH`** — ativa a trava contra push na professora.
 
-### **- Traga as atualizações da professora:**
+Confira:
+
+- `git remote -v` deve ficar igual ao [modelo](#confira-os-endereços-cadastrados-seu-repositório-e-repositório-da-professora).
+- `git branch -vv` deve mostrar o `main` com **`[origin/main]`**. Se aparecer `[upstream/main]`, repita o comando `git branch -u origin/main main`.
+
+---
+
+## 3. Atualize seu repositório com a atividade de hoje
+
+### Traga as atualizações da professora
 
 ```powershell
 git checkout main
@@ -104,11 +174,11 @@ git merge upstream/main
 git push origin main
 ```
 
-*Se não aparecer `CONFLICT`, deu certo. Pule para o passo 4.*
+*Se não aparecer `CONFLICT`, deu certo. Pule para o [passo 4](#4-crie-uma-branch-da-aula).*
 
-### **- Se aparecer `CONFLICT`:**
+### Se aparecer `CONFLICT`
 
-Isso acontece quando você fez commit no `main`. Primeiro cancele o merge e guarde o seu trabalho numa branch de backup:
+Isso acontece quando você fez commit direto no `main`. Primeiro cancele o merge e guarde o seu trabalho numa branch de backup:
 
 ```powershell
 git merge --abort
@@ -127,7 +197,7 @@ git push origin main
 
 *Se aparecer `nothing to commit`, já está igual e o `push` resolve. O seu código antigo continua salvo na branch `meu-trabalho`.*
 
-### **- Confira:**
+### Confira
 
 ```powershell
 git diff --stat upstream/main
@@ -135,55 +205,104 @@ git diff --stat upstream/main
 
 *Se não mostrar nada, o seu `main` está igual ao da professora.*
 
-## **4. Crie uma** **branch da aula**
+---
 
-```
-git checkout -b aula-05-11
-```
-
-*Troque `0``5`**`-11` pela data de hoje. Faça o exercício nesta branch, nunca no `main`.*
-
-### **- Verifique se está trabalhando na branch criada****:**
-
-### **- Confira se você está na branch criada para ****a aula:**
-
-1. Olhe o **canto inferior esquerdo** do VS Code: deve aparecer o nome `aula-0``5``-11` ao lado do ícone de branch.
-2. Ou rode no terminal:
+## 4. Crie uma branch da aula
 
 ```powershell
-git status
+git checkout -b aula_DD-MM
 ```
 
-A primeira linha deve dizer `On branch aula-0``5``-11`.
+*Troque `DD-MM` pela data de hoje. Exemplo para 10 de novembro: `git checkout -b aula_10-11`.*
+*Faça o exercício **nesta branch**, nunca no `main`.*
+
+### Confira se você está na branch da aula
+
+1. Olhe o **canto inferior esquerdo** do VS Code: deve aparecer o nome `aula_DD-MM` ao lado do ícone de branch.
+2. Ou rode no terminal:
+
+   ```powershell
+   git status
+   ```
+
+   A primeira linha deve dizer `On branch aula_DD-MM`.
 
 3. Se aparecer `On branch main`, troque para a branch da aula (sem `-b`, porque ela já existe):
 
-```
-git checkout aula-05-11
-```
+   ```powershell
+   git checkout aula_DD-MM
+   ```
 
-*O `-b` só é usado na primeira vez, para criar a branch. Confira a branch sempre antes de fazer `git commit`.*
+*O `-b` só é usado na primeira vez, para **criar** a branch. Confira a branch sempre antes de fazer `git commit`.*
 
-### **- Ao terminar o exercício, salve no seu repositório:**
-
-```
-git add .
-git commit -m "Exercício aula 05-11"
-git push -u origin aula-05-11
-```
-
-## **5****. Veja as orientações da aula de hoje em loja-turma\\\_****Orientacoes*\_*e\_apoio\\aula\_10-11****.md**** **
-
-1. No VS Code, clique no arquivo `aula_10-11.md` (na raiz do projeto, fora da pasta `src`).
-2. Pressione `Ctrl + Shift + V` no vs copara ver o arquivo .md formatado, com títulos e tabelas. Se preferir, abra o repositório da turma no navegador: o README aparece logo abaixo da lista de arquivos.
-3. Veja o diagrama e as regras, construa de acordo com cada um. Crie cada classe em um arquivo.py dentro da pasta `src/models/classe.py`. depois teste as implementações no arquivo `main.py`.
-4. Depois de cada bloco, rode o projeto para testar:
+### Ao terminar o exercício, salve no seu repositório
 
 ```powershell
-python src/main.py
+git add .
+git commit -m "Exercício aula DD-MM"
+git branch -vv
+git push -u origin aula_DD-MM
 ```
 
-*Não edite o `README.md`: ele é da professora e alterações nele causam conflito na próxima atualização. Para fazer anotações, crie o seu próprio arquivo, por exemplo `minhas_anotacoes.md`.*
+Antes do `push`, confira a saída do `git branch -vv`:
+
+- A branch atual (marcada com `*`) **não pode** mostrar `[upstream/...]`.
+- Na primeira vez, é normal a branch da aula aparecer **sem nada** entre colchetes. Depois do `push`, ela passa a mostrar `[origin/aula_DD-MM]`.
+
+> 💡 **O `-u` não tem nada a ver com o `upstream` da professora.**
+> `-u` é a forma curta de `--set-upstream`: ele apenas liga a sua branch local à branch de mesmo nome no **seu** `origin`. Depois disso, um simples `git push` já sabe para onde enviar.
+> Quem decide o destino é a palavra **`origin`** no comando.
+
+> 💡 **Usando os botões do VS Code?** Se o VS Code perguntar para qual remote publicar (**Publish Branch**), escolha sempre **`origin`**.
+
+---
+
+## 5. Veja as orientações da aula de hoje
+
+As orientações ficam na pasta `_Orientacoes_e_apoio`, no arquivo com a data da aula, por exemplo:
+
+```
+loja-turma\_Orientacoes_e_apoio\Aula 10-11-2026.md
+```
+
+1. No VS Code, abra a pasta `_Orientacoes_e_apoio` (na raiz do projeto, fora da pasta `src`) e clique no arquivo da aula de hoje.
+2. Pressione `Ctrl + Shift + V` para ver o arquivo `.md` formatado, com títulos, imagens e tabelas. Se preferir, abra o arquivo pelo repositório da turma no navegador.
+3. Veja o diagrama e as regras e construa de acordo com cada um:
+   - Crie **cada classe em um arquivo** `.py` dentro da pasta `src/models/` (exemplo: `src/models/cliente.py`).
+   - Depois, teste as implementações no arquivo `src/main.py`.
+4. Depois de cada bloco, rode o projeto para testar:
+
+   ```powershell
+   python src/main.py
+   ```
+
+> ⚠️ **Não edite o `README.md` nem os arquivos de `_Orientacoes_e_apoio`**: eles são da professora, e alterações neles causam conflito na próxima atualização. Para fazer anotações, crie o seu próprio arquivo, por exemplo `minhas_anotacoes.md`.
+
+---
+
+## Resumo rápido (cola de bolso)
+
+```powershell
+# 1. Conferir remotes (origin = SEU usuário | upstream push = SEM_PUSH)
+git remote -v
+
+# 2. Atualizar o main com a professora
+git checkout main
+git fetch upstream
+git merge upstream/main
+git push origin main
+
+# 3. Criar a branch da aula
+git checkout -b aula_DD-MM
+
+# 4. Ao terminar
+git add .
+git commit -m "Exercício aula DD-MM"
+git branch -vv
+git push -u origin aula_DD-MM
+```
+
+✅ **Sempre `origin` no push. Nunca `upstream`.**
 
 ## **- Cuidados:**
 
