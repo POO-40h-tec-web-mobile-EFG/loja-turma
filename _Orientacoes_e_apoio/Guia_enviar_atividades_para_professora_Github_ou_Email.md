@@ -330,14 +330,14 @@ git push -u origin aula_DD-MM
 
 # **VIA EMAIL****:**
 
-***Para quem não ******e**stá **a**comp**anhando****** **pelo****** ******GitHub. Não precisa de conta nem de comandos Git.***
+**Para quem não está acompanhando pelo GitHub. Não precisa de conta nem de comandos Git.**
 
 ## **1. Baixe o projeto da professora**
 
 1. Abra o repositório da turma: [https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma](https://github.com/POO-40h-tec-web-mobile-EFG/loja-turma).
 2. Clique no botão verde **Code** e depois em **Download ZIP**.
 3. Na pasta Downloads, clique com o botão direito no arquivo `loja-turma-main.zip` e escolha **Extrair tudo**.
-4. Renomeie a pasta extraída de `loja-turma-main` para `loja-turma` e mova para a sua pasta de projetos (ex.: `C:\``D``OCU``MEN``TOS``\`).
+4. Renomeie a pasta extraída de `loja-turma-main` para `loja-turma` e mova para a sua pasta de projetos (ex.: `C:\DOCUMENTOS\`).
 
 *Se você já tem uma pasta `loja-turma` de aulas anteriores, não substitua: renomeie a antiga para `loja-turma-antigo` antes, para não perder o seu código.*
 
@@ -360,7 +360,7 @@ Siga as orientações da aula no `aula_10-11.md` e faça o exercício nos arquiv
 ## **4. Envie por e-mail**
 
 1. Clique com o botão direito na pasta `loja-turma` > **Enviar para** > **Pasta compactada (zipada)**.
-2. Renomeie o arquivo para `loja-turma-SEU-NOME-aula-``1``0``-11.zip` (troque pela data da aula).
-3. Envie para o e-mail da professora com o assunto: ` POO - Atividade aula  ``1``0``-11 - SEU NOME`.
+2. Renomeie o arquivo para `loja-turma-SEU-NOME-aula-10-11.zip` (troque pela data da aula).
+3. Envie para o e-mail da professora ` stela.edu@outlook.com` com o assunto: ` POO - Atividade aula  10-11 - SEU NOME`.
 
 *Se o e-mail recusar o anexo, envie pelo Google Drive e mande o link no e-mail, coloque compartilhamento público para que professora possa baixar e visualizar**.*
