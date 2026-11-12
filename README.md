@@ -25,7 +25,7 @@ Cada aluno trabalha na **sua própria cópia** deste repositório e salva o prog
 No VS Code, abra o terminal (**Terminal → Novo Terminal**) e digite um comando por vez. Troque o que está entre aspas pelos seus dados, e `SEU-USUARIO` pelo seu usuário do GitHub:
 
 ```powershell
-git config --global user.name "Seu Nome Completo"
+git config --global user.name "SEU USUARIO"
 git config --global user.email "email-da-sua-conta-github@exemplo.com"
 cd $HOME\Documents
 git clone https://github.com/SEU-USUARIO/loja-turma.git
