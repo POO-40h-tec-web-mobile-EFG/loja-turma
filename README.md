@@ -85,16 +85,16 @@ src/
 ├── main.py
 └── models/
     ├── __init__.py
-    ├── produto.py         (03/11)
-    ├── categoria.py       (05/11)
-    ├── cliente.py         (10/11)
-    ├── item_carrinho.py   (10/11)
-    ├── carrinho.py        (10/11)
-    ├── pagamento.py       (12/11)
-    ├── comprovante.py     (12/11)
-    ├── pix.py             (12/11)
-    ├── cartao.py          (12/11)
-    └── pedido.py          (12/11)
+    ├── produto.py
+    ├── categoria.py 
+    ├── cliente.py 
+    ├── item_carrinho.py  
+    ├── carrinho.py     
+    ├── pagamento.py      
+    ├── comprovante.py  
+    ├── pix.py            
+    ├── cartao.py         
+    └── pedido.py      
 ```
 
 ### Comandos do dia a dia
