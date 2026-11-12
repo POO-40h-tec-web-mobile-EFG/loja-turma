@@ -1,4 +1,23 @@
-"""Classe Produto (Aula 3)."""
+"""
+Classe Produto (aula de 03/11).
+
+Fontes para estudar:
+- Classes, objetos, atributos e métodos:
+  https://docs.python.org/pt-br/3/tutorial/classes.html
+- Construtor __init__:
+  https://docs.python.org/pt-br/3/reference/datamodel.html#object.__init__
+- Atributos privados (__nome) e protegidos (_nome):
+  https://docs.python.org/pt-br/3/tutorial/classes.html#private-variables
+- @property (ler um atributo privado):
+  https://docs.python.org/pt-br/3/library/functions.html#property
+- raise: como gerar um erro:
+  https://docs.python.org/pt-br/3/tutorial/errors.html#raising-exceptions
+- ValueError:
+  https://docs.python.org/pt-br/3/library/exceptions.html#ValueError
+- Método __str__ (o que o print mostra):
+  https://docs.python.org/pt-br/3/reference/datamodel.html#object.__str__
+- Livro: KEOGH, J.; GIANNINI, M. OOP desmistificado. Alta Books, 2005.
+"""
 
 
 class Produto:
@@ -9,7 +28,7 @@ class Produto:
         # Atributos PRIVADOS (dois sublinhados): só a própria classe mexe neles
         self.__nome = nome
         self.__preco = 0.0
-        self.__categoria = categoria          
+        self.__categoria = categoria    # associação: o produto guarda um OBJETO Categoria
 
         self.alterar_preco(preco)    # RN1: preço maior que zero
         if estoque < 0:                    # RN2: estoque não pode ser negativo
@@ -54,6 +73,8 @@ class Produto:
 
     def repor_estoque(self, quantidade):
         """Devolve unidades ao estoque."""
+        if quantidade <= 0:                # RN2: o estoque nunca fica negativo
+            raise ValueError("A quantidade para repor precisa ser maior que zero.")
         self.__estoque += quantidade
 
     def __str__(self):

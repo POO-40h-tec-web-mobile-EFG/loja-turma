@@ -67,7 +67,7 @@ Cada aluno trabalha na **sua própria cópia** do projeto, chamada **fork**: `gi
 | Situação | O que fazer |
 |---|---|
 | **Primeira aula:** você ainda não tem o fork | Abra `github.com/POO-40h-tec-web-mobile-EFG/loja-turma`, clique em **Fork** → **Create fork**. Confira se o endereço virou `github.com/SEU-USUARIO/loja-turma`. |
-| **Toda aula:** trazer os testes novos da professora | No site, abra o **seu fork** e clique em **Sync fork** → **Update branch**. |
+| **Toda aula:** trazer as novidades do repositório da turma | No site, abra o **seu fork** e clique em **Sync fork** → **Update branch**. |
 | A pasta do projeto **não** está na máquina | No terminal: `cd $HOME\Documents`, depois `git clone https://github.com/SEU-USUARIO/loja-turma.git`, `cd loja-turma` e `code .` (troque `SEU-USUARIO` pelo seu usuário). |
 | A pasta **já** está na máquina | Abra a pasta no VS Code e rode `git pull` no terminal (ou clique em **Sincronizar Alterações**). |
 
@@ -173,7 +173,7 @@ Calma, dá para resolver de qualquer computador ou pelo celular:
 | O envio foi sem pedir login, mesmo depois de sair do VS Code | O acesso ficou guardado no Gerenciador de Credenciais. | Remova o item `git:https://github.com` (seção 4). |
 | `git` não é reconhecido como comando | O Git não está instalado na máquina, ou o VS Code foi aberto antes da instalação. | Feche e abra o VS Code. Se continuar, avise a professora. |
 | *Permission denied* ou 403 mesmo depois de limpar a credencial | Você clonou o `loja-turma` da organização, não o seu fork. | Copie a pasta `src` para outro lugar, clone o **seu fork** (seção 2.3), cole a `src` de volta e envie de novo. |
-| **Sync fork** avisa conflito | Você alterou algo nas pastas `tests/` ou `codigo-das-aulas/`. | Chame a professora. |
+| **Sync fork** avisa conflito | Você alterou um arquivo que a professora também alterou. | Chame a professora. |
 | *rejected* ou *fetch first* no envio | O GitHub tem alterações que ainda não estão na sua máquina. | Rode `git pull` (ou clique em **Sincronizar Alterações**) e envie de novo. |
 | O navegador quer salvar a senha | Ele faz isso por padrão. | Responda **"Nunca"** ou **"Agora não"**. |
 

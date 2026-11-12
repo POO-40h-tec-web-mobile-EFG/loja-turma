@@ -1,0 +1,4 @@
+# Arquivos que o Git deve ignorar (o Python cria sozinho, não fazem parte do projeto).
+# Fonte - como funciona o .gitignore: https://git-scm.com/docs/gitignore
+__pycache__/
+*.pyc
